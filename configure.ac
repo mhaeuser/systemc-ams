@@ -94,6 +94,10 @@ esac
 case "$target" in
     *-apple-*)
         case "$target_cpu" in
+            arm | aarch64)
+                TARGET_ARCH="macosxaarch64"
+                CPU_ARCH="arm64"
+                ;;
             x86_64)
                 TARGET_ARCH="macosx64"
                 CPU_ARCH="x86_64"
