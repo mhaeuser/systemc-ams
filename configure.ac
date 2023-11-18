@@ -56,7 +56,7 @@ AC_REVISION($Revision: 2333 $)
 AC_DEFINE_UNQUOTED(REVISION, "$REVISION", [SVN Revision])
 AC_SUBST(REVISION)
 
-AC_CANONICAL_SYSTEM
+AC_CANONICAL_TARGET
 AM_INIT_AUTOMAKE([1.9.4 tar-pax -Werror -Wno-portability no-define subdir-objects])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES(yes)])
 
@@ -526,7 +526,7 @@ AC_LANG([C++])
 #   detect C++ library dependencies, esp. for cross-compilation
 stored_CXXFLAGS="${CXXFLAGS}"
 CXXFLAGS="${EXTRA_CXXONLYFLAGS} ${EXTRA_CXXFLAGS} ${CXXFLAGS}"
-AC_PROG_LIBTOOL
+LT_INIT
 # * restore CXXFLAGS
 CXXFLAGS="${stored_CXXFLAGS}"
 
@@ -557,7 +557,8 @@ AS_IF([test "x$enable_systemc_compile_check" != "xno"], [
 
 
 
-AC_OUTPUT( Makefile
+AC_CONFIG_FILES( [
+           Makefile
            src/Makefile
            src/scams/Makefile
            src/scams/systemc-ams.pc
@@ -592,7 +593,8 @@ AC_OUTPUT( Makefile
            src/scams/utility/data_types/Makefile
            src/scams/utility/reporting/Makefile
            src/scams/utility/tracing/Makefile
-           docs/Makefile )
+           docs/Makefile ] )
+AC_OUTPUT
 
 # resolve path variables
 SYSTEMC_AMS_HOME=$prefix
