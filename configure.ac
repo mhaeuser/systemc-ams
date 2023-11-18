@@ -75,6 +75,7 @@ AC_PROG_LN_S
 CXX_COMP=`set $CXX; basename $1`
 CC_COMP=`set $CC; basename $1`
 
+EXTRA_CXXONLYFLAGS="-std=c++11"
 EXTRA_CXXFLAGS="-Wall -pedantic -Wno-long-long"
 DEBUG_CXXFLAGS="-g -DDEBUG"
 DEBUG_LDFLAGS="-g"
@@ -354,6 +355,7 @@ fi
 
 
 
+AC_SUBST(EXTRA_CXXONLYFLAGS)
 AC_SUBST(EXTRA_CXXFLAGS)
 AC_SUBST(DEBUG_CXXFLAGS)
 AC_SUBST(DEBUG_LDFLAGS)
@@ -519,7 +521,7 @@ AC_LANG([C++])
 # * need to pass EXTRA_CXXFLAGS to Libtool via CXXFLAGS to correctly
 #   detect C++ library dependencies, esp. for cross-compilation
 stored_CXXFLAGS="${CXXFLAGS}"
-CXXFLAGS="${EXTRA_CXXFLAGS} ${CXXFLAGS}"
+CXXFLAGS="${EXTRA_CXXONLYFLAGS} ${EXTRA_CXXFLAGS} ${CXXFLAGS}"
 AC_PROG_LIBTOOL
 # * restore CXXFLAGS
 CXXFLAGS="${stored_CXXFLAGS}"
